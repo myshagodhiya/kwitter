@@ -1,7 +1,7 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyB21Z7DLacmTEjUaH1QK1kakVmlUxPEWyY",
   authDomain: "kwitter-7c432.firebaseapp.com",
+  databaseURL: "https://kwitter-7c432-default-rtdb.firebaseio.com",
   projectId: "kwitter-7c432",
   storageBucket: "kwitter-7c432.appspot.com",
   messagingSenderId: "506741456655",
@@ -9,8 +9,10 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
- firebase.initializeApp(firebaseConfig);
-//ADD YOUR FIREBASE LINKS HERE
+firebase.initializeApp(firebaseConfig);
+
+user_name= localStorage.getItem("user_name");
+document.getElementById("user_name").innerHTML= "Welcome "+user_name+"!";
 
 function addroom(){
 room_name = document.getElementById("room_name").value;
@@ -32,5 +34,10 @@ getData();
 function redirectToRoomName(name) {
   console.log (name);
   localStorage.setItem("room_name", name);
-  window.location= "kwitter_page.html";
+  window.location= "index.html";
+}
+function logout(){
+  localStorage.removeItem("user_name");
+  localStorage.removeItem("room_name");
+  window.location="index.html";
 }
